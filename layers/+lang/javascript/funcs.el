@@ -94,9 +94,4 @@
     (kbd "C-g") 'tern-pop-find-definition
     "ht" 'tern-get-type))
 
-(defun spacemacs//tern-detect ()
-  "Detect tern binary and warn if not found."
-  (let ((found (executable-find "tern")))
-    (unless found
-      (spacemacs-buffer/warning "tern binary not found!"))
-    found))
+(defun spacemacs//tern-detect ())

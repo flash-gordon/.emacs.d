@@ -41,8 +41,9 @@
 
 (let* ((refmt-bin (or (shell-cmd "refmt ----where")
                       (shell-cmd "which refmt")))
-       (merlin-bin (or (shell-cmd "ocamlmerlin ----where")
-                       (shell-cmd "which ocamlmerlin")))
+       ;;(merlin-bin (or (shell-cmd "ocamlmerlin ----where")
+       ;;                (shell-cmd "which ocamlmerlin")))
+       (merlin-bin (shell-cmd "which ocamlmerlin"))
        (merlin-base-dir (when merlin-bin
                           (replace-regexp-in-string "bin/ocamlmerlin$" "" merlin-bin))))
   ;; Add npm merlin.el to the emacs load path and tell emacs where to find ocamlmerlin
@@ -52,11 +53,5 @@
 
   (when refmt-bin
     (setq refmt-command refmt-bin)))
-
-(require 'reason-mode)
-(require 'merlin)
-(add-hook 'reason-mode-hook (lambda ()
-                              (add-hook 'before-save-hook 'refmt-before-save)
-                              (merlin-mode)))
 
 (setq merlin-ac-setup t)
